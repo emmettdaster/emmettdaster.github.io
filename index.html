@@ -10,37 +10,39 @@
             margin: 20px;
             max-width: 800px;
             line-height: 1.6;
-            background-color: #f8f8f8;
-            color: #333;
+            background-color: #000;
+            color: #fff;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB30lEQVQ4T6VTz0tcQRD+JdyUSaqNkHmlF2ly5WMbWxi0v9AlRS5aHSm0EGiVhoJH4UJHB0NJEGVoJRy7CqhQsS/gmUKUuGqugpeBQWY8ej7O9nZ5JHlT4Axnz557znfnOgPazTprpRIIyqToATGn5ghchAkQoQQ8QxEHd2k0iMU4O5Wh/ByVg8Po0yUc0Pz6/7duv5tUqUX7/v/Zp9u3ax/HwiMnvD4NCIRCSFGXwCFsE1rKygGpNmnq6SqR8MwJSdycHCv/Fl4JzzKm+Pz5jxlER6hEpARrJjJKp1Sl1QiaJGI8PRF6OPjg5ZtMfTg0Pp1dfI7R6EKK4bj58+JEXGGZKSkR9+PHz4dO9mZy8vaXny6m6mkp7UNfXx/rJzdRkV5Tqm+88gsD/B5TrpDh5HKxEYyhtGzSfJhESZQJN8Vh3H4JGsCVRZk2mbx0tht+u9vXbfz2zJqMnBw7Oxn5ycG+OGGPyt/E35bi/TSWQQSaSQiUPEHEb9/uc7zsiQmCYKJQg1haWFzMzP5/j9XGznk4MBgKcpiVqYkIc7gBFgjjfIld7KxvF74vCtIWenp6RXVC8w/AYn/5FWhRimYm1fUhVOT9Mvhd84DP1FFXEVHr5Qpy0AfgfyC/f0D5QhwQ9sAeQix2eS6US18xNubhT6XbXpxa3T+iep+53ZL7Pc12HBYZFkxYMKPfbFAoNEmSQgVAhJpm22r1Z6u+H8B/eRdzAAAAAElFTkSuQmCC');
+            animation: starsAnimation 50s linear infinite;
         }
 
         h1 {
             text-align: center;
             font-size: 36px;
             margin-bottom: 30px;
-            color: #444;
+            color: #fff;
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 50px;
+            padding-left: 30px;
             margin-bottom: 40px;
         }
 
         .timeline-item:before {
             content: "";
             position: absolute;
-            top: 10px;
+            top: 12px;
             left: 0;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background-color: #007bff;
-            box-shadow: 0 0 0 4px #f8f8f8;
+            box-shadow: 0 0 0 4px #000;
         }
 
         .timeline-content {
-            background-color: #f8f8f8;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -49,7 +51,7 @@
         }
 
         .timeline-item:nth-child(even) .timeline-content {
-            background-color: #f2f2f2;
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
         .timeline-item:nth-child(even):before {
@@ -64,6 +66,15 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes starsAnimation {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 500px 500px;
             }
         }
     </style>
@@ -102,8 +113,4 @@
     <div class="timeline-item">
         <div class="timeline-content">
             <h2>Continuing Legacy</h2>
-            <p>Today, Jim continues to thrive within the server, bringing joy to those who know him. His legacy serves as a testament to the power of creativity and the lasting impact of a simple character born on a late-night MS Paint session.</p>
-        </div>
-    </div>
-</body>
-</html>
+            <p>Today, Jim continues to thrive within the server, bringing joy to those who know him. His legacy serves as a testament to
