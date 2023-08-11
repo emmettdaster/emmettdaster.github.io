@@ -1,117 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline of Jim's History</title>
+    <title>Creepy Jim's Descent</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            max-width: 800px;
-            line-height: 1.6;
             background-color: #000;
             color: #fff;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB30lEQVQ4T6VTz0tcQRD+JdyUSaqNkHmlF2ly5WMbWxi0v9AlRS5aHSm0EGiVhoJH4UJHB0NJEGVoJRy7CqhQsS/gmUKUuGqugpeBQWY8ej7O9nZ5JHlT4Axnz557znfnOgPazTprpRIIyqToATGn5ghchAkQoQQ8QxEHd2k0iMU4O5Wh/ByVg8Po0yUc0Pz6/7duv5tUqUX7/v/Zp9u3ax/HwiMnvD4NCIRCSFGXwCFsE1rKygGpNmnq6SqR8MwJSdycHCv/Fl4JzzKm+Pz5jxlER6hEpARrJjJKp1Sl1QiaJGI8PRF6OPjg5ZtMfTg0Pp1dfI7R6EKK4bj58+JEXGGZKSkR9+PHz4dO9mZy8vaXny6m6mkp7UNfXx/rJzdRkV5Tqm+88gsD/B5TrpDh5HKxEYyhtGzSfJhESZQJN8Vh3H4JGsCVRZk2mbx0tht+u9vXbfz2zJqMnBw7Oxn5ycG+OGGPyt/E35bi/TSWQQSaSQiUPEHEb9/uc7zsiQmCYKJQg1haWFzMzP5/j9XGznk4MBgKcpiVqYkIc7gBFgjjfIld7KxvF74vCtIWenp6RXVC8w/AYn/5FWhRimYm1fUhVOT9Mvhd84DP1FFXEVHr5Qpy0AfgfyC/f0D5QhwQ9sAeQix2eS6US18xNubhT6XbXpxa3T+iep+53ZL7Pc12HBYZFkxYMKPfbFAoNEmSQgVAhJpm22r1Z6u+H8B/eRdzAAAAAElFTkSuQmCC');
-            animation: starsAnimation 50s linear infinite;
+            font-family: Arial, sans-serif;
         }
-
-        h1 {
+        #header {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: #fff;
+            padding: 20px;
         }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 50px;
-            margin-bottom: 40px;
-            color: #000;
+        #image {
+            text-align: center;
+            margin-top: 20px;
         }
-
-        .timeline-item:before {
-            content: "";
-            position: absolute;
-            top: 12px;
-            left: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: #007bff;
-            box-shadow: 0 0 0 4px #000;
+        #story {
+            padding: 20px;
+            line-height: 1.5;
         }
-
-        .timeline-content {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: fadeInUp 1s ease;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        .timeline-item:nth-child(even):before {
-            background-color: #28a745;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
+        @keyframes flicker {
+            0%, 100% {
                 opacity: 1;
-                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.5;
             }
         }
-
-        @keyframes starsAnimation {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 1000px 1000px;
-            }
+        #flicker-image {
+            animation: flicker 2s infinite;
         }
     </style>
 </head>
 <body>
-    <h1>Timeline of Jim's History</h1>
-
-    <div class="timeline-item">
-        <div class="timeline-content">
-            <h2>Creation of Jim</h2>
-            <p>One night, Emmettdaster, feeling both tired and inspired, decided to create something on MS Paint. In just 15 seconds, he sketched a random figure and named it Jim. Little did Emmett know that this seemingly insignificant creation would soon become an iconic character.</p>
-        </div>
+    <div id="header">
+        <h1>Welcome to Creepy Jim's Descent</h1>
     </div>
-
-    <div class="timeline-item">
-        <div class="timeline-content">
-            <h2>Discovery by Kaden</h2>
-            <p>Initially, Jim sat on the desktop of the server, unnoticed, until Kaden discovered him and introduced him to the rest of the group.</p>
-        </div>
+    <div id="image">
+        <img id="flicker-image" src="https://i.ibb.co/Jk4kRvj/jim-is-that-you-removebg-preview.png" alt="Jim">
     </div>
-
-    <div class="timeline-item">
-        <div class="timeline-content">
-            <h2>Growing Popularity</h2>
-            <p>Over time, Jim gained some popularity, and the group started sharing his image as a JPEG file in the group chat. As Jim's fame grew, so did the number of variants created.</p>
-        </div>
+    <div id="story">
+        <h2>The Dark Journey of Jim</h2>
+        <p>Once a cheerful soul, Jim's mind began to unravel. Shadows danced in his periphery, whispers echoed in his ears, and a haunting presence consumed his thoughts.</p>
+        <p>Day by day, his reality blurred, and his smile faded. He became entrapped in a world of his own making, tormented by the phantoms that seemed to follow him relentlessly.</p>
+        <p>This website is a glimpse into Jim's twisted descent into madness, a chilling narrative of a mind consumed by darkness.</p>
     </div>
-
-    <div class="timeline-item">
-        <div class="timeline-content">
-            <h2>Dedicated Discord Server</h2>
-            <p>Eventually, the group decided to create a dedicated Discord server to celebrate Jim's legacy. Jim himself even acquired a Discord account, cementing his presence within the community.</p>
-        </div>
-    </div>
-
-    <div class="timeline-item">
-        <div class="timeline-content">
-            <h2>Continuing Legacy</h2>
-            <p>Today, Jim continues to thrive within the server, bringing joy to those who know him. His legacy serves as a testament to the power of creativity and the lasting impact of a simple
+</body>
+</html>
