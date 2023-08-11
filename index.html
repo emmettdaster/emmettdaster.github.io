@@ -13,6 +13,7 @@
         #header {
             text-align: center;
             padding: 20px;
+            border-bottom: 2px solid #444;
         }
         #image {
             text-align: center;
@@ -23,6 +24,11 @@
             line-height: 1.5;
             max-width: 800px;
             margin: 0 auto;
+            border-radius: 10px;
+            background-color: #111;
+            margin-top: 20px;
+            border: 2px solid #444;
+            position: relative;
         }
         @keyframes flicker {
             0%, 100% {
@@ -66,6 +72,34 @@
         #additional-content p {
             margin-bottom: 20px;
         }
+        .hover-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .hover-line::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #666;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-in-out;
+        }
+        .hover-line:hover::before {
+            transform: scaleX(1);
+        }
+        .hover-line.vertical::before {
+            width: 1px;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -76,16 +110,14 @@
         <img id="flicker-image" src="https://i.ibb.co/Jk4kRvj/jim-is-that-you-removebg-preview.png" alt="Jim">
     </div>
     <div id="story">
-        <p>You have found Insane, Jim's mind began to unravel. Shadows danced in his periphery, whispers echoed in his ears, and a haunting presence consumed his thoughts.</p>
+        <p>Once a cheerful soul, Jim's mind began to unravel. Shadows danced in his periphery, whispers echoed in his ears, and a haunting presence consumed his thoughts.</p>
         <p>Day by day, his reality blurred, and his smile faded. He became entrapped in a world of his own making, tormented by the phantoms that seemed to follow him relentlessly.</p>
         <p>This website is a glimpse into Jim's twisted descent into madness, a chilling narrative of a mind consumed by darkness.</p>
     </div>
     <div id="back-button">
         <a class="button" href="https://0101e.xyz" target="_blank">Back</a>
     </div>
-    <div id="additional-content">
-        <h3></h3>
-        <p></p>
-    </div>
+    <div class="hover-line"></div>
+    <div class="hover-line vertical"></div>
 </body>
 </html>
