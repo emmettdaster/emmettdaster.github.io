@@ -92,11 +92,23 @@
             z-index: -1;
             opacity: 0.3;
         }
+        .hover-effect::before,
+        .hover-effect::after {
+            animation: parallax 10s infinite alternate;
+        }
+        @keyframes parallax {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px));
+            }
+        }
         body:hover .hover-effect::before {
-            transform: translate(calc(var(--mouse-x, 0px) * 1), calc(var(--mouse-y, 0px) * 1));
+            transform: translate(0, 0);
         }
         body:hover .hover-effect::after {
-            transform: translate(calc(var(--mouse-x, 0px) * -0.5), calc(var(--mouse-y, 0px) * -0.5));
+            transform: translate(0, 0);
         }
     </style>
 </head>
@@ -110,7 +122,7 @@
     <div id="story">
         <p>Once a cheerful soul, Jim's mind began to unravel. Shadows danced in his periphery, whispers echoed in his ears, and a haunting presence consumed his thoughts.</p>
         <p>Day by day, his reality blurred, and his smile faded. He became entrapped in a world of his own making, tormented by the phantoms that seemed to follow him relentlessly.</p>
-        <p>jim has gone insane.</p>
+        <p>This website is a glimpse into Jim's twisted descent into madness, a chilling narrative of a mind consumed by darkness.</p>
     </div>
     <div id="back-button">
         <a class="button" href="https://0101e.xyz" target="_blank">Back</a>
