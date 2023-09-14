@@ -393,15 +393,12 @@ const fakeWebsites = {
         offsetY = e.clientY;
       }
 
-      function mouseUp() {
+   function mouseUp() {
         document.removeEventListener('mousemove', mouseMove);
         document.removeEventListener('mouseup', mouseUp);
         
 
-
-      }
-      document.querySelector(".desktop-icon").style.top = '20px';
-document.querySelector(".desktop-icon").style.left = '20px';
+   
        }
     });
   });
