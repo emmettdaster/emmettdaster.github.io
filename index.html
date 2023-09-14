@@ -175,16 +175,22 @@
   let originalHeight = 0;
   let isFullscreen = {};
 
-  function openApp(id) {
-    const app = document.getElementById(id);
-    app.style.display = 'block';
-    app.style.top = '50px';
-    app.style.left = '50px';
-    addRunningApp(id);
-    if (id === 'paintApp') {
-      initializePaintApp();
-    }
+ function openApp(id) {
+  const app = document.getElementById(id);
+  app.style.display = 'block';
+  app.style.top = '50px';
+  app.style.left = '50px';
+  addRunningApp(id);
+  
+  if (id === 'paintApp') {
+    initializePaintApp();
   }
+
+  if (id === 'browserApp') {
+    alert("The Web Browser is unfinished, just like most of this");
+  }
+}
+
 
   function closeApp(id) {
     const app = document.getElementById(id);
@@ -261,7 +267,7 @@ function navigate() {
 const fakeWebsites = {
   // ...existing fake websites
   'jim.com': `
-    <h1>Jim.com</h1>
+    <h1>jim.com</h1>
     <p>This is a test to see if websites work</p>
     <button onclick="alert('wow, it do?')">Click Me</button>
     <button onclick="alert('This button do')">Click MEEEEEEE</button>
