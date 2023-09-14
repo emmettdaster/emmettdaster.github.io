@@ -9,7 +9,7 @@
       padding: 0;
     }
     #desktop {
-      width: 100%;
+      width: 100%;s
       height: calc(100vh - 40px);
       position: relative;
     }
