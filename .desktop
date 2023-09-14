@@ -8,12 +8,15 @@
       background-image: url('https://images.unsplash.com/photo-1693430895886-dced76ef7b0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80');
       margin: 0;
       padding: 0;
+  
     }
     #desktop {
       width: 100%;
       height: calc(100vh - 40px);
       position: relative;
-    }
+  }
+
+
     #taskbar {
       width: 100%;
       height: 40px;
@@ -46,6 +49,14 @@
     .window-buttons {
       float: right;
     }
+.desktop-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  position: absolute;
+  cursor: pointer;
+}
+
     .window-button {
       margin-left: 5px;
       cursor: pointer;
@@ -97,7 +108,10 @@
   </style>
 </head>
 <body>
+  
   <div id='desktop'>
+      <div class="desktop-icon" onclick="openApp('settingsApp')">Settings</div>
+      <div class="desktop-icon" onclick="openApp('paintApp')">Paint</div>
     <div id='settingsApp' class='app-window'>
       <header>
         Settings
@@ -382,9 +396,13 @@ const fakeWebsites = {
       function mouseUp() {
         document.removeEventListener('mousemove', mouseMove);
         document.removeEventListener('mouseup', mouseUp);
+        
 
 
       }
+      document.querySelector(".desktop-icon").style.top = '20px';
+document.querySelector(".desktop-icon").style.left = '20px';
+       }
     });
   });
 </script>
