@@ -1,383 +1,128 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Jim OS</title>
-  <style>
-    body, html {
-      font-family: 'Courier New', monospace;
-      background-image: url('https://images.unsplash.com/photo-1693430895886-dced76ef7b0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80');
-      margin: 0;
-      padding: 0;
-    }
-    #desktop {
-      width: 100%;s
-      height: calc(100vh - 40px);
-      position: relative;
-    }
-    #taskbar {
-      width: 100%;
-      height: 40px;
-      background-color: #000;
-      position: absolute;
-      bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #startButton, #time {
-      color: white;
-      margin: 0 10px;
-      cursor: pointer;
-    }
-    .app-window {
-      display: none;
-      width: 300px;
-      height: 200px;
-      position: absolute;
-      background-color: white;
-      border: 2px solid gray;
-    }
-    .app-window header {
-      cursor: move;
-      background-color: #333;
-      color: white;
-      padding: 5px;
-    }
-    .window-buttons {
-      float: right;
-    }
-    .window-button {
-      margin-left: 5px;
-      cursor: pointer;
-    }
-    #startMenu {
-      display: none;
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      background-color: #333;
-      border: 1px solid #222;
-      width: 200px;
-      height: 300px;
-    }
-    #startMenu button {
-      padding: 10px;
-      width: 100%;
-      text-align: left;
-      font-size: 18px;
-    }
-    #settingsApp .settings-section {
-      margin: 10px;
-    }
-    #runningApps {
-      display: flex;
-    }
-    .running-app {
-      margin-right: 10px;
-      cursor: pointer;
-      color: white;
-    }
-    #paintApp {
-      display: none;
-    }
-    #paintCanvas {
-      border: 2px solid black;
-    }
-    #paintButtons {
-      display: flex;
-      margin-top: 10px;
-    }
-    .paint-button {
-      margin-right: 5px;
-      cursor: pointer;
-    }
-    #startButton:hover, #time:hover {
-      background-color: rgba(255,255,255,0.2);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmett's Christmas Wishlist</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text color */
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+            margin: 0; /* Remove default margin */
+        }
+
+        h1 {
+            font-size: 50px; /* Larger font size */
+            color: #228b22; /* Forest Green for the title */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wishlist-item {
+            font-size: 18px;
+        }
+
+        .wishlist-button {
+            background-color: #228b22; /* Forest Green for the button */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .wishlist-button:hover {
+            background-color: #1c7f1c; /* Darker shade on hover */
+        }
+
+        .snowflake {
+            position: absolute;
+            font-size: 25px;
+            color: #fff; /* White snowflakes */
+            pointer-events: none;
+            animation: falling ease-in infinite;
+        }
+
+        @keyframes falling {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id='desktop'>
-    <div id='settingsApp' class='app-window'>
-      <header>
-        Settings
-        <div class='window-buttons'>
-          <span class='window-button' onclick='minimizeApp("settingsApp")'>-</span>
-          <span class='window-button' onclick='fullscreenApp("settingsApp")'>[]</span>
-          <span class='window-button' onclick='closeApp("settingsApp")'>x</span>
-        </div>
-      </header>
-      <div class='settings-section'>
-        <label for='taskbarColor'>Taskbar Color:</label>
-        <input type='color' id='taskbarColor' onchange='changeTaskbarColor(this.value)'>
-      </div>
-      <div class='settings-section'>
-        <label for='potatoMode'>Potato Mode:</label>
-        <input type='checkbox' id='potatoMode' onchange='togglePotatoMode(this.checked)'>
-      </div>
-      <div class='settings-section'>
-        Version: 1.0.5
-      </div>
-    </div>
-  </div>
-  <div id='paintApp' class='app-window'>
-    <header>
-      Paint
-      <div class='window-buttons'>
-        <span class='window-button' onclick='minimizeApp("paintApp")'>-</span>
-        <span class='window-button' onclick='fullscreenApp("paintApp")'>[]</span>
-        <span class='window-button' onclick='closeApp("paintApp")'>x</span>
-      </div>
-    </header>
-    <canvas id='paintCanvas' width='280' height='150'></canvas>
-    <div id='paintButtons'>
-      <div id='black' class='paint-button' style='width: 20px; height: 20px; background-color: black;'></div>
-      <div id='red' class='paint-button' style='width: 20px; height: 20px; background-color: red;'></div>
-      <div id='green' class='paint-button' style='width: 20px; height: 20px; background-color: green;'></div>
-      <div id='blue' class='paint-button' style='width: 20px; height: 20px; background-color: blue;'></div>
-      <div id='white' class='paint-button' style='width: 20px; height: 20px; background-color: white;'></div>
-    </div>
-  </div>
-<div id='browserApp' class='app-window'>
-  <header>
-    Web Browser
-    <div class='window-buttons'>
-      <span class='window-button' onclick='minimizeApp("browserApp")'>-</span>
-      <span class='window-button' onclick='fullscreenApp("browserApp")'>[]</span>
-      <span class='window-button' onclick='closeApp("browserApp")'>x</span>
-    </div>
-  </header>
-  <input type="text" id="urlBar" placeholder="Enter URL">
-  <button onclick="navigate()">Go</button>
-  <div id="webpage" style="border:1px solid black; height:200px; overflow:auto;">
-    <!-- soon to be added-emmett -->
-  </div>
-</div>
 
-  <div id='taskbar'>
-    <div id='startButton' onclick='toggleStartMenu()'>Start</div>
-    <div id='runningApps'></div>
-    <div id='time'></div>
-  </div>
-  <div id='startMenu'>
-    <button onclick='openApp("settingsApp")'>Settings</button>
-    <button onclick='openApp("paintApp")'>Paint</button>
-    <button onclick='openApp("browserApp")'>Web Browser</button>
+    <h1>My Christmas Wishlist</h1>
+    
+    <ul>
+        <li class="wishlist-item">
+            Keyboard
+            <button class="wishlist-button" onclick="window.location.href='https://example.com/item1'">View</button>
+        </li>
+        <li class="wishlist-item">
+            Item 2
+            <button class="wishlist-button" onclick="window.location.href='https://example.com/item2'">View</button>
+        </li>
+        <li class="wishlist-item">
+            Item 3
+            <button class="wishlist-button" onclick="window.location.href='https://example.com/item3'">View</button>
+        </li>
+        <!-- Add more items as needed -->
+    </ul>
 
-  </div>
+    <!-- Snow falling effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.body;
+            const numSnowflakes = 100;
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                createSnowflake(container);
+            }
+
+            function createSnowflake(container) {
+                const snowflake = document.createElement('span');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * window.innerWidth + 'px';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.opacity = Math.random();
+                container.appendChild(snowflake);
+
+                snowflake.addEventListener('animationiteration', () => {
+                    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+                    snowflake.style.opacity = Math.random();
+                });
+
+                container.addEventListener('mousemove', (event) => {
+                    const mouseX = event.clientX;
+                    const mouseY = event.clientY;
+                    const snowflakeX = snowflake.getBoundingClientRect().left + window.pageXOffset;
+                    const snowflakeY = snowflake.getBoundingClientRect().top + window.pageYOffset;
+
+                    const distance = Math.sqrt((mouseX - snowflakeX) ** 2 + (mouseY - snowflakeY) ** 2);
+                    if (distance < 50) {
+                        snowflake.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
-<script>
-  let dragItem = null;
-  let offsetX = 0;
-  let offsetY = 0;
-  let originalWidth = 0;
-  let originalHeight = 0;
-  let isFullscreen = {};
-
-  function openApp(id) {
-    const app = document.getElementById(id);
-    app.style.display = 'block';
-    app.style.top = '50px';
-    app.style.left = '50px';
-    addRunningApp(id);
-    if (id === 'paintApp') {
-      initializePaintApp();
-    }
-  }
-
-  function closeApp(id) {
-    const app = document.getElementById(id);
-    app.style.display = 'none';
-    removeRunningApp(id);
-  }
-
-  function minimizeApp(id) {
-    const app = document.getElementById(id);
-    app.style.display = 'none';
-  }
-
-function fullscreenApp(id) {
-  const app = document.getElementById(id);
-  if (isFullscreen[id]) {
-    app.style.width = originalWidth + 'px';
-    app.style.height = originalHeight + 'px';
-    isFullscreen[id] = false;
-  } else {
-    originalWidth = app.offsetWidth;
-    originalHeight = app.offsetHeight;
-    app.style.width = 'calc(65% - 40px)';
-    app.style.height = 'calc(65% - 40px)';
-    isFullscreen[id] = true;
-  }
-  
-  if(id === "paintApp") {
-    canvas.width = app.offsetWidth - 20;
-    canvas.height = app.offsetHeight - 50;
-  }
-}
-  function toggleStartMenu() {
-    const startMenu = document.getElementById('startMenu');
-    if (startMenu.style.display === 'none' || startMenu.style.display === '') {
-      startMenu.style.display = 'block';
-    } else {
-      startMenu.style.display = 'none';
-    }
-  }
-
-  function changeTaskbarColor(color) {
-    document.getElementById('taskbar').style.backgroundColor = color;
-  }
-
-  function togglePotatoMode(isChecked) {
-    if (isChecked) {
-      document.body.style.imageRendering = 'pixelated';
-    } else {
-      document.body.style.imageRendering = 'auto';
-    }
-  }
-
-  function updateTime() {
-    const time = new Date();
-    const timeStr = time.toLocaleTimeString();
-    document.getElementById('time').innerText = timeStr;
-  }
-  setInterval(updateTime, 1000);
-  updateTime();
-
-  function addRunningApp(id) {
-    const runningApps = document.getElementById('runningApps');
-    const appButton = document.createElement('div');
-    appButton.className = 'running-app';
-    appButton.innerText = id;
-    appButton.onclick = function() { toggleApp(id); };
-    runningApps.appendChild(appButton);
-  }
-function navigate() {
-  const url = document.getElementById("urlBar").value;
-  const webpage = document.getElementById("webpage");
-  
-  // Define some fake websites
-const fakeWebsites = {
-  // ...existing fake websites
-  'jim.com': `
-    <h1>jim.com</h1>
-    <p>This is a test to see if websites work</p>
-    <button onclick="alert('wow, it do?')">Click Me</button>
-    <button onclick="alert('This button do')">Click MEEEEEEE</button>
-  `,
-    'itdo.com': `
-    <h1>itdo.com</h1>
-    <p>i̳t̳ ̳d̳o̳</p>
-    <button onclick="alert('wow, it do?')">what it do?</button>
-    <button onclick="alert('This button do')">when it do</button>
-  `,
-  // ... more websites
-};
-
-  
-  // Check if the URL exists in our fake websites
-  if (fakeWebsites.hasOwnProperty(url)) {
-    webpage.innerHTML = fakeWebsites[url];
-  } else {
-    webpage.innerHTML = "<h1>Jim Doesn't Seem To Be Able To Find This Website</h1>";
-  }
-}
-
-  function removeRunningApp(id) {
-    const runningApps = document.getElementById('runningApps');
-    const appButtons = runningApps.getElementsByClassName('running-app');
-    for (let i = 0; i < appButtons.length; i++) {
-      if (appButtons[i].innerText === id) {
-        runningApps.removeChild(appButtons[i]);
-        break;
-      }
-    }
-  }
-
-  function toggleApp(id) {
-    const app = document.getElementById(id);
-    if (app.style.display === 'none' || app.style.display === '') {
-      app.style.display = 'block';
-    } else {
-      app.style.display = 'none';
-    }
-  }
-</script>
-<script>
-  let canvas = document.getElementById('paintCanvas');
-  let ctx = canvas.getContext('2d');
-  let painting = false;
-  let color = 'black';
-
-  function initializePaintApp() {
-    canvas.width = document.getElementById('paintApp').offsetWidth - 20;
-    canvas.height = document.getElementById('paintApp').offsetHeight - 50;
-  }
-
-  canvas.addEventListener('mousedown', function() {
-    painting = true;
-  });
-
-  canvas.addEventListener('mouseup', function() {
-    painting = false;
-    ctx.beginPath();
-  });
-
-  canvas.addEventListener('mousemove', draw);
-
-  function draw(e) {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    if (!painting) return;
-    ctx.lineWidth = 5;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = color;
-
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  }
-
-  document.querySelectorAll('.paint-button').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      color = e.target.id;
-    });
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const appWindows = document.querySelectorAll('.app-window header');
-
-    appWindows.forEach((header) => {
-      header.addEventListener('mousedown', mouseDown);
-
-      function mouseDown(e) {
-        offsetX = e.clientX;
-        offsetY = e.clientY;
-        dragItem = header.parentElement;
-
-        document.addEventListener('mousemove', mouseMove);
-        document.addEventListener('mouseup', mouseUp);
-      }
-
-      function mouseMove(e) {
-        const x = e.clientX - offsetX;
-        const y = e.clientY - offsetY;
-
-        dragItem.style.left = `${dragItem.offsetLeft + x}px`;
-        dragItem.style.top = `${dragItem.offsetTop + y}px`;
-
-        offsetX = e.clientX;
-        offsetY = e.clientY;
-      }
-
-      function mouseUp() {
-        document.removeEventListener('mousemove', mouseMove);
-        document.removeEventListener('mouseup', mouseUp);
-
-
-      }
-    });
-  });
-</script>
